@@ -10,6 +10,6 @@ import lombok.*;
 public class Message {
 
     private String receiver;
-    private String message;
+    private String text;
     private String departurePoint;
 }
