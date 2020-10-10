@@ -4,7 +4,7 @@ import com.messanger.dp.model.Message;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FacebookMessage extends MessageCreator {
+public class FacebookMR extends MessageRecipient {
 
     @Override
     public String messageCreator(Message message) {

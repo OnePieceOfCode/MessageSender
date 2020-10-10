@@ -2,7 +2,7 @@ package com.messanger.dp.model;
 
 import java.util.Arrays;
 
-public enum AddresseeType {
+public enum MessageRecipientType {
 
     FACEBOOK("fb" , "facebook"),
     TWITTER("tw", "twitter"),
@@ -12,7 +12,7 @@ public enum AddresseeType {
     private String id;
     private String addressee;
 
-    AddresseeType(String id, String addressee) {
+    MessageRecipientType(String id, String addressee) {
         this.id = id;
         this.addressee = addressee;
     }
