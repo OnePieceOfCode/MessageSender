@@ -17,10 +17,17 @@ import java.util.Map;
 public class MessageDistributor {
 
     private Map<String, MessageRecipient> messageRecipientMap;
+    private final FacebookMR facebookMR;
+    private final TwitterMR twitterMR;
+    private final FaxMR faxMR;
+    private final InstagramMR instagramMR;
 
     @Autowired
-    public MessageDistributor(Map<String, MessageRecipient> messageRecipientMap) {
-        this.messageRecipientMap = messageRecipientMap;
+    public MessageDistributor(FacebookMR facebookMR, TwitterMR twitterMR, FaxMR faxMR, InstagramMR instagramMR) {
+        this.facebookMR = facebookMR;
+        this.twitterMR = twitterMR;
+        this.faxMR = faxMR;
+        this.instagramMR = instagramMR;
     }
 
     @Configuration
@@ -30,10 +37,10 @@ public class MessageDistributor {
         @Bean
         public Map<String, MessageRecipient> createMap() {
             messageRecipientMap = new HashMap<>();
-            messageRecipientMap.put(MessageRecipientType.FACEBOOK.getId(), new FacebookMR());
-            messageRecipientMap.put(MessageRecipientType.TWITTER.getId(), new TwitterMR());
-            messageRecipientMap.put(MessageRecipientType.FAX.getId(), new FaxMR());
-            messageRecipientMap.put(MessageRecipientType.INSTAGRAM.getId(), new InstagramMR());
+            messageRecipientMap.put(MessageRecipientType.FACEBOOK.getId(), facebookMR);
+            messageRecipientMap.put(MessageRecipientType.TWITTER.getId(), twitterMR);
+            messageRecipientMap.put(MessageRecipientType.FAX.getId(), faxMR);
+            messageRecipientMap.put(MessageRecipientType.INSTAGRAM.getId(), instagramMR);
             return messageRecipientMap;
         }
     }
