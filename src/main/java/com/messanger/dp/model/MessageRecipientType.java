@@ -4,20 +4,20 @@ import java.util.Arrays;
 
 public enum MessageRecipientType {
 
-    FACEBOOK("fb" , "facebook"),
-    TWITTER("tw", "twitter"),
-    FAX("f", "fax"),
-    INSTAGRAM("i", "instagram");
+    FACEBOOK(0, "fb"),
+    TWITTER(1, "tw"),
+    FAX(2, "f"),
+    INSTAGRAM(3, "i");
 
-    private String id;
-    private String addressee;
+    private final Integer id;
+    private final String addressee;
 
-    MessageRecipientType(String id, String addressee) {
+    MessageRecipientType(Integer id, String addressee) {
         this.id = id;
         this.addressee = addressee;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -25,7 +25,7 @@ public enum MessageRecipientType {
         return addressee;
     }
 
-    public static String getById(String id) {
+    public static String getAddresseeById(int id) {
         return Arrays.stream(values())
                 .filter(addresseeType -> addresseeType.getId().equals(id))
                 .findFirst()
