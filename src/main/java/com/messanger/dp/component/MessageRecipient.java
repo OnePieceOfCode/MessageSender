@@ -2,10 +2,9 @@ package com.messanger.dp.component;
 
 
 import com.messanger.dp.model.Message;
-import org.springframework.core.Ordered;
+import com.messanger.dp.model.MessageRecipientType;
 
-public abstract class MessageRecipient implements Ordered {
-   public String messageCreator(Message message) {
-      return null;
-   }
+public interface MessageRecipient {
+   String messageCreator(Message message);
+   MessageRecipientType getType();
 }

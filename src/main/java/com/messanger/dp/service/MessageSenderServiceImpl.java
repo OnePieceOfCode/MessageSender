@@ -1,8 +1,8 @@
 package com.messanger.dp.service;
 
 import com.messanger.dp.component.MessageRecipient;
-import com.messanger.dp.distributor.MessageDistributor;
 import com.messanger.dp.model.Message;
+import com.messanger.dp.model.MessageRecipientType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +11,18 @@ import java.util.Map;
 @Service
 public class MessageSenderServiceImpl implements MessageSenderService {
 
-    private final MessageDistributor messageDistributor;
+    private final Map<MessageRecipientType, MessageRecipient> mapper;
 
     @Autowired
-    public MessageSenderServiceImpl(MessageDistributor messageDistributor) {
-        this.messageDistributor = messageDistributor;
+    public MessageSenderServiceImpl(Map<MessageRecipientType, MessageRecipient> mapper) {
+        this.mapper = mapper;
     }
 
     @Override
     public void sendMessage(Message message) {
-        try {
-            Map<String, MessageRecipient> mapper = messageDistributor.getMessageRecipientMap();
-            String newMessage = mapper.get(message.getDeparturePoint()).messageCreator(message);
-            System.out.format(newMessage);
-        } catch (NullPointerException e) {
-            throw new RuntimeException("This departure point doesn't exist.");
-        }
+        MessageRecipientType type = MessageRecipientType.getByAddressee(message.getDeparturePoint());
+        String newMessage = mapper.get(type).messageCreator(message);
+        System.out.format(newMessage);
         System.out.println();
     }
 }

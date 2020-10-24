@@ -1,11 +1,11 @@
 package com.messanger.dp.component;
 
 import com.messanger.dp.model.Message;
-import org.springframework.core.Ordered;
+import com.messanger.dp.model.MessageRecipientType;
 import org.springframework.stereotype.Component;
 
 @Component
-public class InstagramMR extends MessageRecipient {
+public class InstagramMR implements MessageRecipient {
 
     @Override
     public String messageCreator(Message message) {
@@ -15,7 +15,7 @@ public class InstagramMR extends MessageRecipient {
     }
 
     @Override
-    public int getOrder() {
-        return Ordered.HIGHEST_PRECEDENCE+3;
+    public MessageRecipientType getType() {
+        return MessageRecipientType.INSTAGRAM;
     }
 }

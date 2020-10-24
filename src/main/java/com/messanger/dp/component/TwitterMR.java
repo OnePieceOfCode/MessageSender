@@ -1,11 +1,11 @@
 package com.messanger.dp.component;
 
 import com.messanger.dp.model.Message;
-import org.springframework.core.Ordered;
+import com.messanger.dp.model.MessageRecipientType;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TwitterMR extends MessageRecipient {
+public class TwitterMR implements MessageRecipient {
 
     @Override
     public String messageCreator (Message message) {
@@ -15,7 +15,7 @@ public class TwitterMR extends MessageRecipient {
     }
 
     @Override
-    public int getOrder() {
-        return Ordered.HIGHEST_PRECEDENCE+1;
+    public MessageRecipientType getType() {
+        return MessageRecipientType.TWITTER;
     }
 }
